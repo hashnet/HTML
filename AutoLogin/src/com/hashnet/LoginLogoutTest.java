@@ -9,6 +9,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public class LoginLogoutTest {
+	private static boolean isProxyEnabled = true;
+	private static final String PROXY_IP = "10.1.100.1";
+	private static final int PROXY_PORT = 8080;
 	private static final int TIME_OUT = 5000;
 	private static final String LOGIN_URL = "https://holdmycourt.com/reserve2/reserve_signin.php";
 	private static final String LOGOUT_URL = "https://holdmycourt.com/reserve2/reserve_signin.php?logout=1&dir=rahrc";
@@ -63,7 +66,9 @@ public class LoginLogoutTest {
 				.timeout(TIME_OUT)
 				.followRedirects(true)
 				.data(postData);
-		
+		if(isProxyEnabled) {
+			conn.proxy(PROXY_IP, PROXY_PORT);
+		}
 		Connection.Response response = conn.execute();
 		
 		if(response.statusCode() == 200) {
@@ -93,7 +98,9 @@ public class LoginLogoutTest {
 				.timeout(TIME_OUT)
 				.followRedirects(true)
 				.cookies(cookies);
-		
+		if(isProxyEnabled) {
+			conn.proxy(PROXY_IP, PROXY_PORT);
+		}
 		Connection.Response response = conn.execute();
 		
 		if(response.statusCode() == 200) {
