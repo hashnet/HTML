@@ -44,9 +44,7 @@ public class LoginLogoutTest {
 			}
 		} else {
 			System.out.println("Login Unsuccessful");
-		}
-
-	
+		}	
 	}
 	
 	private static boolean login(String url) throws IOException {
